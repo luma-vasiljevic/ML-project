@@ -158,3 +158,5 @@ model
 
 The out of sample error from the quiz set (cross-validation subset) is: 0.4843%
 Note that the out of bag error from model1 and out of sample error from the validation subset are very similar.
+
+The model had 100% accuracy on the test set.

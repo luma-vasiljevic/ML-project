@@ -45,6 +45,8 @@ pos_monitors_test=clean(data)[,8:59]
 row_label_test=data[,c(2,5,6,7)]
 M=abs(cor(pos_monitors_train))
 diag(M)=0
+
+
 M[upper.tri(M)]=0
 cor=which(M>0.8,arr.ind=T)
 idx2=union(cor[,1],cor[,2])
@@ -67,3 +69,14 @@ cv_outcome=outcome_train[-train1$Resample1]
 
 validation=predict(model,cv_pred)
 OutOfSampleError=1-sum(validation==cv_outcome)/length(cv_outcome)
+
+test_predictions=predict(model1,pred_test)
+
+pml_write_files = function(x){
+  n = length(x)
+  for(i in 1:n){
+    filename = paste0("problem_id_",i,".txt")
+    write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
+  }
+}
+pml_write_files(test_predictions)
